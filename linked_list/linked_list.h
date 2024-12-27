@@ -18,5 +18,6 @@ void node_init(struct Node* node, int num);
 
 // Functions to insert content
 void ll_insert_front(struct LinkedList* list, int data);
+void ll_insert_back(struct LinkedList* list, int data);
 
 #endif
