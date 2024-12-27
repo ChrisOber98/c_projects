@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build and Run C Program",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "main.c",
+                "-o",
+                "main.out"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compiles and runs the C program"
+        },
+        {
+            "label": "Run C Program",
+            "type": "shell",
+            "command": "./main.out",
+            "group": "test",
+            "dependsOrder": "sequence",
+            "dependsOn": "Build and Run C Program"
+        }
+    ]
+}

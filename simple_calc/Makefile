@@ -1,12 +1,8 @@
-CC = gcc
-CFLAGS = -g -Wall
+simple_calc: simple_calc.c
+	gcc -o simple_calc simple_calc.c
 
-calc: calc.c
-	clear
-	$(CC) $(CFLAGS) -o calc calc.c
 clean:
-	clear
-	rm calc
+	rm simple_calc
+
 run:
-	clear
-	./calc
+	./simple_calc
