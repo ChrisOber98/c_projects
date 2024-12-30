@@ -177,12 +177,69 @@ void test_ll_delete_back() {
     printf("ALL TESTS PASSED\n\n");
 }
 
+void test_ll_delete_at() {
+    printf("----TESTING DELETE AT----\n");
+
+    struct LinkedList* list = (struct LinkedList*)malloc(sizeof(struct LinkedList));
+    ll_init(list);
+
+    // Test deletion from empty list
+    assert(ll_delete_at(list, 0) != 1);
+    assert(ll_delete_at(list, 10) != 1);
+
+    // add 1 values for deletion
+    ll_insert_front(list, 12);
+    
+    // TEST deletion from 1 item list
+    assert(ll_delete_at(list, 1) != 1);
+    assert(ll_delete_at(list, -1) != 1);
+    assert(ll_delete_at(list, 0) == 1);
+    assert(list->head == NULL);
+ 
+    // add 3 values for deletion
+    ll_insert_front(list, 12);
+    ll_insert_front(list, 22);
+    ll_insert_front(list, 32);
+
+    //Delete from middle
+    assert(ll_delete_at(list, 1) == 1);
+    assert(list->head->data == 32);
+    assert(list->head->next->data == 12);
+
+    // ADD IT BACK
+    ll_insert_front(list, 42);
+
+    //Delete from end
+    assert(ll_delete_at(list, 2) == 1);
+    assert(list->head->data == 42);
+    assert(list->head->next->data == 32);
+
+    // ADD IT BACK
+    ll_insert_front(list, 52);
+
+    //Delete from start
+    assert(ll_delete_at(list, 0) == 1);
+    assert(list->head->data == 42);
+    assert(list->head->next->data == 32);
+
+    //Delete to empty
+    assert(ll_delete_at(list, 1) == 1);
+    assert(list->head->data == 42);
+    assert(ll_delete_at(list, 0) == 1);
+    assert(list->head == NULL);
+    assert(ll_delete_at(list, 0) != 1);
+
+    ll_destruct(list);
+
+    printf("ALL TESTS PASSED\n\n");
+}
 int main(int argc, char ** argv) {
     test_ll_insert_front();
     test_ll_insert_back();
     test_ll_insert_at();
     test_ll_delete_front();   
     test_ll_delete_back();
+    test_ll_delete_at();
 }
 
 

@@ -8,6 +8,7 @@ void ll_init(struct LinkedList* list){
     list->head = NULL;
 }
 
+// Function to deconstruct Linked List
 int ll_destruct(struct LinkedList* list) {
     struct Node* temp = NULL;
 
@@ -23,11 +24,15 @@ int ll_destruct(struct LinkedList* list) {
     return 1; 
 }
 
+// Function to initialize a node struct
 void node_init(struct Node* node, int num) {
     node->data = num;
     node->next = NULL;
 }
 
+// Function to insert at the front of a linked list
+// return 1: SUCCESS
+// return -1: ALLOCATION ERROR
 int ll_insert_front(struct LinkedList* list, int data) {
    // Create New Node For Insertion
    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
@@ -44,6 +49,9 @@ int ll_insert_front(struct LinkedList* list, int data) {
    return 1;
 }
 
+// Function to insert at end of linked list
+// return 1: SUCESS
+// return -1: ALLOCATION ERROR
 int ll_insert_back(struct LinkedList* list, int data) {
    // Create New Node For Insertion
    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
@@ -83,6 +91,10 @@ int ll_insert_back(struct LinkedList* list, int data) {
    return 1;
 }
 
+// Function to insert at a specific index in linked list
+// return 1: SUCESS
+// return -1: ALLOCATION ERROR
+// return -2: OUT OF BOUNDS ERROR
 int ll_insert_at(struct LinkedList* list, int at, int data) {
    // Create New Node For Insertion
    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
@@ -132,6 +144,9 @@ int ll_insert_at(struct LinkedList* list, int at, int data) {
    }
 }
 
+// Function to delete from front of linked list
+// return 1: SUCCESS
+// return -3: DELETION FROM EMPTY LIST
 int ll_delete_front(struct LinkedList* list) {
 	// Check for Empty List
 	if (list->head == NULL) {
@@ -147,6 +162,7 @@ int ll_delete_front(struct LinkedList* list) {
 	return 1;
 }
 
+// Functon to delete at end of linked list
 int ll_delete_back(struct LinkedList* list) {
 	// Check for Empty List
 	if (list->head == NULL) {
@@ -175,4 +191,46 @@ int ll_delete_back(struct LinkedList* list) {
     free(cur);
 
 	return 1;
+}
+
+// Function to delete at a specific index in linked list
+// return 1: SUCCESS
+// return -2: OUT OF BOUNDS ERROR
+int ll_delete_at(struct LinkedList* list, int index) {
+   // Check for out of bounds
+   if (list->head == NULL) {
+        fprintf(stderr, "OUT OF BOUNDS ERROR.\n");
+        return -2;
+   }
+
+   // Check for deletion at 0
+   if (index == 0) {
+        struct Node* temp = list->head;
+        list->head = list->head->next;
+        free(temp);
+        return 1;
+   }
+
+   // Create Pointers to help insert new node
+   struct Node* cur = list->head;
+   struct Node* prev = NULL;
+   int counter = 0;
+
+   // Get Pointer to Last Node
+   while (cur->next != NULL && counter != index) {
+       prev = cur;
+       cur = cur->next;
+       counter++;
+   }
+
+   // Delete Node
+   if (counter == index) {
+        prev->next = cur->next;
+        free(cur);
+        return 1;
+   }
+   else {
+        fprintf(stderr, "OUT OF BOUNDS ERROR.\n");
+        return -2;
+   }
 }
