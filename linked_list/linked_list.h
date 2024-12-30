@@ -17,7 +17,14 @@ void ll_init(struct LinkedList* list);
 void node_init(struct Node* node, int num);
 
 // Functions to insert content
-void ll_insert_front(struct LinkedList* list, int data);
-void ll_insert_back(struct LinkedList* list, int data);
+int ll_insert_front(struct LinkedList* list, int data);
+int ll_insert_back(struct LinkedList* list, int data);
+int ll_insert_at(struct LinkedList* list, int index, int data);
+
+// Functions to remove content
+int ll_delete_front(struct LinkedList* list);
+int ll_delete_back(struct LinkedList* list);
+int ll_delete_at(struct LinkedList* list, int index);
+int ll_delete_num(struct LinkedList* list, int data);
 
 #endif
