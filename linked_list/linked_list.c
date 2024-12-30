@@ -147,3 +147,32 @@ int ll_delete_front(struct LinkedList* list) {
 	return 1;
 }
 
+int ll_delete_back(struct LinkedList* list) {
+	// Check for Empty List
+	if (list->head == NULL) {
+		fprintf(stderr, "TRIED TO DELETE FROM EMPTY LIST.\n");
+		return -3;
+	}
+
+    // Check if One element in Lust
+    if (list->head->next == NULL) {
+        struct Node* temp = list->head;
+        list->head = NULL;
+        free(temp);
+        return 1;
+    }
+
+	// Delete from back of list
+	struct Node* cur = list->head;
+    struct Node* prev = NULL;
+
+    while (cur->next != NULL) {
+        prev = cur;
+        cur = cur->next;
+    } 
+
+    prev->next = cur->next;
+    free(cur);
+
+	return 1;
+}

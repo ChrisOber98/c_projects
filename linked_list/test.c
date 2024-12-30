@@ -109,10 +109,80 @@ void test_ll_insert_at() {
 
 }
 
+// Function to test delete font
+void test_ll_delete_front() {
+    printf("----TESTING DELETE FRONT----\n");
+
+    struct LinkedList* list = (struct LinkedList*)malloc(sizeof(struct LinkedList));
+    ll_init(list);
+
+    // Test deletion from empty list
+    assert(ll_delete_front(list) != 1);
+
+    // add 3 values for deletion
+    ll_insert_front(list, 12);
+    ll_insert_front(list, 22);
+    ll_insert_front(list, 32);
+    
+
+    // Test deletion from non empty list
+    assert(list->head->data == 32);
+    assert(list->head->next->data == 22);
+    assert(list->head->next->next->data == 12);
+    assert(ll_delete_front(list) == 1);
+    assert(list->head->data == 22);
+    assert(list->head->next->data == 12);
+    assert(ll_delete_front(list) == 1);
+    assert(list->head->data == 12);
+    assert(ll_delete_front(list) == 1);
+    assert(list->head == NULL);
+    assert(ll_delete_front(list) != 1);
+
+    ll_destruct(list);
+
+    printf("ALL TESTS PASSED\n\n");
+}
+
+// Function to test delete font
+void test_ll_delete_back() {
+    printf("----TESTING DELETE BACK----\n");
+
+    struct LinkedList* list = (struct LinkedList*)malloc(sizeof(struct LinkedList));
+    ll_init(list);
+
+    // Test deletion from empty list
+    assert(ll_delete_back(list) != 1);
+
+    // add 3 values for deletion
+    ll_insert_front(list, 12);
+    ll_insert_front(list, 22);
+    ll_insert_front(list, 32);
+    
+
+    // Test deletion from non empty list
+    assert(list->head->data == 32);
+    assert(list->head->next->data == 22);
+    assert(list->head->next->next->data == 12);
+    assert(ll_delete_back(list) == 1);
+    assert(list->head->data == 32);
+    assert(list->head->next->data == 22);
+    assert(ll_delete_back(list) == 1);
+    assert(list->head->data == 32);
+    assert(ll_delete_back(list) == 1);
+    assert(list->head == NULL);
+    assert(ll_delete_back(list) != 1);
+
+    ll_destruct(list);
+
+    printf("ALL TESTS PASSED\n\n");
+}
+
 int main(int argc, char ** argv) {
     test_ll_insert_front();
     test_ll_insert_back();
     test_ll_insert_at();
+    test_ll_delete_front();   
+    test_ll_delete_back();
 }
 
 
