@@ -27,6 +27,8 @@ void test_ll_insert_front() {
     assert(list->head->next->data == 12);
     assert(list->head->next->next == NULL);
 
+    ll_destruct(list);
+
     printf("ALL TESTS PASSED\n\n");
 }
 
@@ -55,6 +57,8 @@ void test_ll_insert_back() {
     assert(list->head->next->data == 24);
     assert(list->head->next->next->data == 48);
     assert(list->head->next->next->next == NULL);
+
+    ll_destruct(list);
 
     printf("ALL TESTS PASSED\n\n");
 }
@@ -98,6 +102,8 @@ void test_ll_insert_at() {
     assert(list->head->next->next->data == 96);
     assert(list->head->next->next->next->data == 48);
     assert(list->head->next->next->next->next == NULL);
+
+    ll_destruct(list);
 
     printf("ALL TESTS PASSED\n\n");
 

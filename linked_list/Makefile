@@ -1,5 +1,5 @@
-CC = clang
-CFLAGS = -Wall -g -fsanitize=address
+CC = gcc
+CFLAGS = -Wall -g
 
 all: linked_list
 

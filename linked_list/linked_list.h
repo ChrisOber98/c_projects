@@ -13,6 +13,9 @@ struct LinkedList {
 // Function to initialze Linked List
 void ll_init(struct LinkedList* list);
 
+// Function to deinit Linked List
+int ll_destruct(struct LinkedList* list);
+
 // Function to initialize Node
 void node_init(struct Node* node, int num);
 
