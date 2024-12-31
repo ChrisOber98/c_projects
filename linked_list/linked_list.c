@@ -234,3 +234,39 @@ int ll_delete_at(struct LinkedList* list, int index) {
         return -2;
    }
 }
+
+// Function to delete the first instance of a number in a linked list
+// return non negative:
+// return -4: did not find value
+int ll_delete_num(struct LinkedList* list, int data) {
+    // Check for empty List
+    if (list->head == NULL) {
+        return -4;
+    }
+
+    // Check for 1 element list removal
+    if (list->head->data == data) {
+        struct Node* temp = list->head;
+        list->head = list->head->next;
+        free(temp);
+        return 1;
+    }
+
+    // Create Nodes for deletion
+    struct Node* cur = list->head;
+    struct Node* prev = NULL;
+
+    while (cur->next != NULL && cur->data != data) {
+        prev = cur;
+        cur = cur->next;
+    }
+
+    // Check if found value and delete if so
+    if (cur->data == data) {
+        prev->next = cur->next;
+        free(cur);
+        return 1;    
+    } else {
+        return -4;
+    }
+}
