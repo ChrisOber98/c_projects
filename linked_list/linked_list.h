@@ -30,4 +30,7 @@ int ll_delete_back(struct LinkedList* list);
 int ll_delete_at(struct LinkedList* list, int index);
 int ll_delete_num(struct LinkedList* list, int data);
 
+// Display Functions
+void ll_display(struct LinkedList* list);
+
 #endif

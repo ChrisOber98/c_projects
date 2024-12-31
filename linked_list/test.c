@@ -291,6 +291,25 @@ void test_ll_delete_num() {
 
     printf("ALL TESTS PASSED\n\n");
 }
+
+void test_ll_display() {
+    printf("----TESTING Display----\n");
+
+    struct LinkedList* list = (struct LinkedList*)malloc(sizeof(struct LinkedList));
+    ll_init(list);
+
+    ll_display(list);
+    
+    ll_insert_front(list, 1);
+    ll_display(list);
+    ll_insert_front(list, 2);
+    ll_display(list);
+    ll_insert_front(list, 3);
+    ll_display(list);
+
+    printf("ALL TESTS PASSED\n\n");
+}
+
 int main(int argc, char ** argv) {
     test_ll_insert_front();
     test_ll_insert_back();
@@ -299,6 +318,7 @@ int main(int argc, char ** argv) {
     test_ll_delete_back();
     test_ll_delete_at();
     test_ll_delete_num();
+    test_ll_display();
 }
 
 

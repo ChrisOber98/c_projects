@@ -270,3 +270,16 @@ int ll_delete_num(struct LinkedList* list, int data) {
         return -4;
     }
 }
+
+void ll_display(struct LinkedList* list) {
+    struct Node* cur = list->head;
+    
+    while (cur != NULL) {
+        printf("%d -> ", cur->data);
+        cur = cur->next;
+    }
+
+    printf("NULL\n");
+
+    return;
+}
